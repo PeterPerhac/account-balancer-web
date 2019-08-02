@@ -1,33 +1,54 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.jumbotron {
+  padding: 20px;
+  background: #213f63;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.jumbotron .lang-logo {
+  display: block;
+  background: #ddffff;
+  border-radius: 75%;
+  padding: 10px;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  border: 5px solid #4a91ff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.jumbotron .lang-logo img {
+  max-width: 100%;
+}
+
+.error {
+  color: red;
+}
+
+.form-field {
+  vertical-align: top;
+  display: inline-block;
+}
+
+th {
+  background-color: #845ac7;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e3e3e3;
+}
+
+th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.footer {
+  margin-top: 50px;
+  font-size: x-small;
 }
