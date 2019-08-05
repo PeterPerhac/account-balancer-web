@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Spinner from './spinner'
 
 class MonthSelector extends Component {
 
@@ -11,8 +12,8 @@ class MonthSelector extends Component {
     }
 
     componentDidMount() {
-        return fetch('/api/dates',{
-            headers : {
+        return fetch('/api/dates', {
+            headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
@@ -27,15 +28,20 @@ class MonthSelector extends Component {
 
     render() {
         if (this.state.isLoading) {
-            return <p>Hello</p>
+            return <Spinner width="20" height="20" />;
         }
-        const listItems = this.state.dataSource.months.map(month =>
-            <li key={month.displayName}>{month.displayName}</li>
-        );
+        const listItems = this.state.dataSource.months.map(month => {
+            const link =
+                "/?fromDate=" + month.range.fromDate
+                + "&toDate=" + month.range.toDate;
+            return (
+                <li key={month.displayName}>
+                    <a href={link}>{month.displayName}</a>
+                </li>
+            );
+        });
         return (
-            <ul>
-                {listItems}
-            </ul>
+            <ul>{listItems}</ul>
         );
     }
 }

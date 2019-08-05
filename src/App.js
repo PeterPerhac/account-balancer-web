@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import MonthSelector from "./components/monthSelector";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <div className="container">
                 <div className="row">
                     <div>
+                        Month quick-selection: <MonthSelector />
                         <label>
                             Select date range:
                             <input type="text" id="date-range" size="30" />
