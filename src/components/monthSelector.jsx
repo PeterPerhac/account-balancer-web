@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import Spinner from './spinner'
 
-class C3Chart extends Component {
+class MonthSelector extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
             dataSource: [],
-        }
+        };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -26,24 +28,22 @@ class C3Chart extends Component {
             .catch(error => console.error(error));
     }
 
+    handleChange(e) {
+        const range = this.state.dataSource.months[e.target.value].range;
+        this.props.updateDateRange(range);
+    }
+
     render() {
         if (this.state.isLoading) {
-            return <Spinner width="200" height="200" />;
+            return <Spinner width="20" height="20"/>;
         }
-        const listItems = this.state.dataSource.months.map(month => {
-            const link =
-                "/?fromDate=" + month.range.fromDate
-                + "&toDate=" + month.range.toDate;
-            return (
-                <li key={month.displayName}>
-                    <a href={link}>{month.displayName}</a>
-                </li>
-            );
-        });
+        const listItems = this.state.dataSource.months.map((month, index) =>
+            <option key={month.displayName} value={index}>{month.displayName}</option>
+        );
         return (
-            <ul>{listItems}</ul>
+            <select onChange={this.handleChange}>{listItems}</select>
         );
     }
 }
 
-export default C3Chart;
+export default MonthSelector;
