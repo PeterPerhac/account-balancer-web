@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Spinner from './spinner'
 
-class MonthSelector extends Component {
+class C3Chart extends Component {
 
     constructor(props) {
         super(props);
@@ -28,7 +28,7 @@ class MonthSelector extends Component {
 
     render() {
         if (this.state.isLoading) {
-            return <Spinner width="20" height="20" />;
+            return <Spinner width="200" height="200" />;
         }
         const listItems = this.state.dataSource.months.map(month => {
             const link =
@@ -46,4 +46,4 @@ class MonthSelector extends Component {
     }
 }
 
-export default MonthSelector;
+export default C3Chart;

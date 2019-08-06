@@ -1,36 +1,35 @@
 import React from 'react';
 import './App.css';
 import MonthSelector from "./components/monthSelector";
+import Jumbotron from "./components/jumbotron"
+import C3Chart from "./components/c3Chart"
 
 function App() {
 
+    let dateRange = {
+        fromDate: "2019-01-01",
+        toDate: "2099-12-31"
+    };
+
     return (
         <div className="App">
-            <div className="jumbotron text-center">
-                <div className="container">
-                    <h1>Burning money</h1>
-                    <h4>Pro tips</h4>
-                    <a href="/" className="lang-logo">
-                        <img src="./images/money-burning.png" alt="Money Burning"/>
-                    </a>
-                    <p>Ever wonder what to do with all that spare money just piling up in every corner of your home?</p>
-                </div>
-            </div>
+
+            <Jumbotron />
 
             <div className="container">
                 <div className="row">
                     <div>
                         Month quick-selection: <MonthSelector />
-                        <label>
-                            Select date range:
-                            <input type="text" id="date-range" size="30" />
-                        </label>
+                        {/*<label>*/}
+                        {/*    Select date range:*/}
+                        {/*    <input type="text" id="date-range" size="30" />*/}
+                        {/*</label>*/}
                     </div>
                 </div>
                 <p>Balance across accounts</p>
                 <div className="row">
                     <div className="col-12">
-                        <div className="chart" id="balance-totals-chart"/>
+                        <C3Chart id="balance-totals" dataSource="/api/chart-data/balance-totals" dateRange={dateRange} />
                         <ul>
                             <li>Last value: <span id="balance-totals-last-value">&nbsp;</span></li>
                         </ul>
