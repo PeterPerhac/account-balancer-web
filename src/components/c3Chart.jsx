@@ -13,7 +13,10 @@ class C3Chart extends Component {
             isLoading: true,
             dataSource: [],
         };
+        this.lastFetched = {};
     }
+
+    lastFetched = {};
 
     componentWillUnmount() {
         try {
@@ -39,7 +42,10 @@ class C3Chart extends Component {
             return c3.generate(newConfig);
         };
 
-        if (this.state.isLoading) {
+        let needsLoading = this.state.isLoading || !(this.props.dateRange === this.lastFetched);
+
+        if (needsLoading) {
+            this.lastFetched = this.props.dateRange;
             fetch(`${this.props.dataSource}?fromDate=${encodeURIComponent(this.props.dateRange.fromDate)}&toDate=${encodeURIComponent(this.props.dateRange.toDate)}`, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +63,7 @@ class C3Chart extends Component {
                 .catch(error => console.error(error));
             return <Spinner width="200" height="200"/>;
         } else {
-            return <div />;
+            return <div/>;
         }
     }
 }
